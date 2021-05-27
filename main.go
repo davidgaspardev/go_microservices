@@ -11,7 +11,9 @@ func main() {
     // Creating a server mux
     mux := http.NewServeMux();
     mux.HandleFunc("/", func(w http.ResponseWriter, r * http.Request) {
+        w.Header().Set("Content-Type", "text/plain; charset=utf8");
       	w.WriteHeader(http.StatusOK);
+ 	// Conveting message to byte array
         w.Write([]byte(message));
     });
 
