@@ -2,6 +2,7 @@ package main
 
 import (
     "fmt"
+    "log"
     "net/http"
 )
 
@@ -15,6 +16,14 @@ func main() {
       	w.WriteHeader(http.StatusOK);
  	// Conveting message to byte array
         w.Write([]byte(message));
+
+        // Loop over header names
+        for name, values := range r.Header {
+            // Loop over all values for the name.
+            for _, value := range values {
+                fmt.Println(name, value)
+            }
+        }
     });
 
     err := http.ListenAndServe(":8080", mux);
