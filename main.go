@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"time"
 )
 
 func main() {
@@ -18,10 +19,11 @@ func main() {
 		w.Write([]byte(message))
 
 		// Loop over header names
+		fmt.Println("=====> http header (", time.Now().Format("2006.01.02 15:04:05"), ")")
 		for name, values := range r.Header {
 			// Loop over all values for the name.
 			for _, value := range values {
-				fmt.Println(name, value)
+				fmt.Println(" - ", name, ": ", value)
 			}
 		}
 	})
